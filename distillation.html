@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amrit Khanal - Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3498db; /* Blue for liquid */
+            --secondary-color: #2ecc71;
+            --dark-text-color: #2c3e50;
+            --light-bg-color: #f9f9f9;
+            --simulink-bg-color: #e6ecef;
+            --simulink-grid-color: rgba(0,0,0,0.05);
+            --code-bg-gradient-start: rgba(52, 152, 219, 0.1);
+            --code-bg-gradient-end: rgba(46, 204, 113, 0.1);
+            --border-radius-main: 8px;
+            --padding-main: 20px;
+
+            /* PFD Styles based on image */
+            --pfd-pipe-color: #000000; /* Black pipes */
+            --pfd-vessel-border-color: #000000;
+            --pfd-vessel-fill-color: #e0e0e0; /* Light grey for vessels */
+            --pfd-liquid-color-light: #a8d8f0; /* Lighter blue for liquid top */
+            --pfd-liquid-color-dark: #3e84b0;  /* Darker blue for liquid bottom */
+            --pfd-tray-color: #555555;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .container { /* ... existing styles ... */ display: flex; flex-wrap: wrap; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: var(--padding-main); }
+        .main-content { /* ... existing styles ... */ flex: 2; min-width: 300px; }
+        .sidebar { /* ... existing styles ... */ flex: 1; margin-left: var(--padding-main); min-width: 280px; }
+        .about { /* ... existing styles ... */ padding: var(--padding-main); background-color: var(--light-bg-color); border-radius: var(--border-radius-main); margin-bottom: var(--padding-main); box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .profile-section { /* ... existing styles ... */ display: flex; align-items: flex-start; flex-wrap: wrap; }
+        .profile-image-container { /* ... existing styles ... */ margin-right: var(--padding-main); margin-bottom: var(--padding-main); }
+        .profile-img { /* ... existing styles ... */ width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 3px solid var(--primary-color); }
+        .bio-text { /* ... existing styles ... */ flex: 1; min-width: 280px; }
+        .bio-text h3 { /* ... existing styles ... */ color: var(--dark-text-color); margin-top: 0; }
+        .education h3 { /* ... existing styles ... */ color: var(--dark-text-color); margin-bottom: 10px; }
+        .edu-item { /* ... existing styles ... */ margin-bottom: 15px; display: flex; align-items: flex-start; }
+        .edu-icon { /* ... existing styles ... */ margin-right: 10px; font-size: 1.2em; color: var(--primary-color); width: 20px; text-align: center; }
+        .edu-item div strong { /* ... existing styles ... */ color: var(--dark-text-color); }
+        .skills-overview h3 { /* ... existing styles ... */ color: var(--dark-text-color); }
+        .skills-logo-list { /* ... existing styles ... */ list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 15px; }
+        .skills-logo-list li img { /* ... existing styles ... */ width: 50px; height: 50px; object-fit: contain; transition: transform 0.2s ease-in-out; }
+        .skills-logo-list li img:hover { /* ... existing styles ... */ transform: scale(1.1); }
+
+        .simulink-section { /* ... existing styles ... */ position: relative; margin-top: 30px; padding: var(--padding-main); background: var(--simulink-bg-color); border: 2px solid var(--primary-color); border-radius: var(--border-radius-main); box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); overflow: hidden; }
+        .simulink-section::before { /* ... existing styles ... */ content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, var(--simulink-grid-color) 1px, transparent 1px), linear-gradient(0deg, var(--simulink-grid-color) 1px, transparent 1px); background-size: 20px 20px; opacity: 0.5; z-index: 0; }
+        .tech-branding { /* ... existing styles ... */ font-size: 2em; font-weight: bold; text-align: center; padding: 15px 0; background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); -webkit-background-clip: text; background-clip: text; color: transparent; position: relative; z-index: 1; letter-spacing: 1.5px; margin-bottom: var(--padding-main); text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); }
+        .typewriter-code { /* ... existing styles ... */ margin: var(--padding-main) auto; padding: 15px; background: transparent; font-family: 'Consolas', 'SF Mono', 'Courier New', monospace; font-size: 14px; border-radius: 5px; white-space: pre; position: relative; z-index: 1; line-height: 1.5; box-shadow: 0 0 15px rgba(52, 152, 219, 0.3); width: 100%; max-width: 650px; box-sizing: border-box; text-align: left; clip-path: inset(0 100% 0 0); animation: reveal-text 4s steps(50, end) forwards; overflow-x: auto; }
+        .typewriter-code::before { /* ... existing styles ... */ content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, var(--code-bg-gradient-start), var(--code-bg-gradient-end)); z-index: -1; border-radius: 5px; }
+        .typewriter-code::after { /* ... existing styles ... */ content: ''; position: absolute; top: 0; right: 0; width: 2px; height: 100%; background: var(--secondary-color); animation: blink-caret 0.75s step-end infinite, hide-caret 4s forwards; }
+        @keyframes reveal-text { to { clip-path: inset(0 0 0 0); } }
+        @keyframes blink-caret { 50% { background: transparent; } }
+        @keyframes hide-caret { 99% { opacity: 1; } 100% { opacity: 0; right: -5px; } }
+        .typewriter-code span { color: #e0e0e0; } .typewriter-code .keyword { color: #ff79c6; } .typewriter-code .function { color: #8be9fd; } .typewriter-code .string { color: #f1fa8c; } .typewriter-code .comment { color: #6272a4; }
+        .simulink-symbols-container { /* ... existing styles ... */ display: flex; justify-content: center; align-items: center; margin: 30px 0; position: relative; z-index: 1; gap: 40px; height: 40px; }
+        .simulink-block { /* ... existing styles ... */ width: 60px; height: 35px; background: #ffcc00; border: 2px solid var(--dark-text-color); border-radius: 5px; position: relative; display: flex; align-items: center; justify-content: center; }
+        .simulink-block::after { /* ... existing styles ... */ content: '>'; position: absolute; right: -25px; top: 50%; transform: translateY(-50%); font-size: 20px; color: var(--dark-text-color); }
+        .simulink-block:last-child::after { content: ''; }
+
+
+        /* --- Chemical Engineering Equipment Area --- */
+        .chemical-equipment-display { /* New wrapper for all chem-eng diagrams */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 50px; /* Gap between distillation assembly, reactor, etc. */
+            margin-top: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .equipment-item { /* General wrapper for each piece of equipment and its label */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        .equipment-label-main {
+            font-size: 13px;
+            font-weight: bold;
+            color: var(--dark-text-color);
+            text-align: center;
+            margin-top: 8px;
+        }
+        .pfd-label { /* For labels like Feed, Top Product */
+            position: absolute;
+            font-size: 11px;
+            font-weight: bold;
+            color: var(--pfd-pipe-color);
+            white-space: nowrap;
+            z-index: 15; /* Above pipes */
+        }
+
+        /* --- New Distillation Column Assembly --- */
+        .distillation-assembly {
+            position: relative;
+            width: 320px; /* Adjust as needed for overall assembly width */
+            height: 450px; /* Adjust for overall assembly height */
+            margin: 20px auto;
+            /* border: 1px solid #f00; /* For debugging layout */
+        }
+
+        .distillation-column-main {
+            position: absolute;
+            left: 50%;
+            top: 70px; /* Make space for condenser above */
+            transform: translateX(-50%);
+            width: 80px;
+            height: 280px;
+            background-color: var(--pfd-vessel-fill-color);
+            border: 2px solid var(--pfd-vessel-border-color);
+            border-radius: 30px / 20px; /* Rounded top/bottom */
+            z-index: 5;
+        }
+        .column-liquid {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 90%; /* Fill level */
+            background: linear-gradient(to top, var(--pfd-liquid-color-dark) 0%, var(--pfd-liquid-color-light) 70%, transparent 100%);
+            border-radius: 0 0 28px 28px / 18px 18px; /* Match bottom curve */
+            overflow: hidden;
+            animation: liquid-shimmer 4s infinite ease-in-out;
+        }
+        @keyframes liquid-shimmer {
+            0%, 100% { opacity: 0.9; transform: scaleY(1.0); }
+            50% { opacity: 1; transform: scaleY(1.02); }
+        }
+        .column-tray-dashed {
+            position: absolute;
+            left: 10%;
+            width: 80%;
+            height: 1px;
+            border-top: 2px dashed var(--pfd-tray-color);
+        }
+        /* Position trays (example for 5 trays) */
+        .column-tray-dashed:nth-of-type(1) { top: 20%; }
+        .column-tray-dashed:nth-of-type(2) { top: 35%; }
+        .column-tray-dashed:nth-of-type(3) { top: 50%; }
+        .column-tray-dashed:nth-of-type(4) { top: 65%; }
+        .column-tray-dashed:nth-of-type(5) { top: 80%; }
+
+        .feed-tank {
+            position: absolute;
+            top: 160px; /* Align with feed nozzle */
+            left: 0px;
+            width: 70px;
+            height: 30px;
+            background-color: var(--pfd-vessel-fill-color);
+            border: 2px solid var(--pfd-vessel-border-color);
+            border-radius: 15px; /* Pill shape */
+            z-index: 6;
+        }
+        .feed-tank-liquid {
+            width: 80%; height: 70%; background-color: var(--pfd-liquid-color-light);
+            margin: 15% auto 0; border-radius: 10px 10px 0 0;
+            animation: liquid-shimmer 4.2s infinite ease-in-out;
+        }
+        .label-feed { top: 135px; left: 10px; }
+
+        .overhead-condenser-symbol {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--pfd-pipe-color);
+            border-radius: 50%;
+            z-index: 6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .condenser-squiggle { /* Simplified representation of heat exchange coil */
+            width: 60%; height: 2px; background: var(--pfd-pipe-color);
+            transform: rotate(-45deg); position: relative;
+        }
+        .condenser-squiggle::before, .condenser-squiggle::after {
+            content: ''; position: absolute; width: 100%; height: 2px; background: var(--pfd-pipe-color);
+        }
+        .condenser-squiggle::before { top: -5px; transform: rotate(90deg); left:0}
+        .condenser-squiggle::after { bottom: -5px; transform: rotate(90deg);left:0}
+
+
+        .reflux-drum {
+            position: absolute;
+            top: 55px; /* Below condenser, to the right of column */
+            right: 10px;
+            width: 80px;
+            height: 35px;
+            background-color: var(--pfd-vessel-fill-color);
+            border: 2px solid var(--pfd-vessel-border-color);
+            border-radius: 17px; /* Pill shape */
+            z-index: 6;
+        }
+        .reflux-drum-liquid {
+            width: 100%; height: 60%; background-color: var(--pfd-liquid-color-light);
+            margin-top: 40%; border-radius: 0 0 15px 15px;
+            animation: liquid-shimmer 3.8s infinite ease-in-out;
+        }
+        .label-top-product { top: 95px; right: -55px; }
+
+        .kettle-reboiler {
+            position: absolute;
+            bottom: 0px;
+            right: 0px;
+            width: 100px;
+            height: 45px;
+            background-color: var(--pfd-vessel-fill-color);
+            border: 2px solid var(--pfd-vessel-border-color);
+            border-radius: 22px;
+            z-index: 6;
+            display: flex;
+            align-items: flex-end; /* Liquid at bottom */
+        }
+        .reboiler-liquid {
+            width: 100%; height: 50%; background-color: var(--pfd-liquid-color-dark);
+            border-radius: 0 0 20px 20px;
+            animation: liquid-shimmer 4.5s infinite ease-in-out;
+        }
+        /* Simplified heating element inside reboiler */
+        .reboiler-heater {
+            position: absolute;
+            bottom: 8px; left: 5px;
+            width: 20px; height: 20px;
+            border: 2px solid var(--pfd-pipe-color);
+            border-radius: 50%;
+        }
+        .reboiler-heater::before { /* Tube bundle symbol */
+            content:'U'; font-size:12px; font-weight:bold; color: var(--pfd-pipe-color);
+            position:absolute; top:50%; left:50%; transform:translate(-50%, -50%);
+        }
+        .label-bottom-product { bottom: 10px; right: -70px;}
+
+
+        /* --- Piping for Distillation Assembly (Example) --- */
+        .pipe {
+            position: absolute;
+            background-color: var(--pfd-pipe-color);
+            z-index: 3; /* Below vessels but above background */
+        }
+        .pipe-arrow::after {
+            content: '';
+            position: absolute;
+            border-style: solid;
+            border-width: 4px 0 4px 6px; /* Triangle shape */
+            border-color: transparent transparent transparent var(--pfd-pipe-color);
+        }
+
+        /* Feed Pipe */
+        .pipe-feed1 { left: 70px; top: 174px; width: 48px; height: 2px; }
+        .pipe-feed1.pipe-arrow::after { right: -5px; top: -3px; }
+
+        /* Overhead Vapor Pipe */
+        .pipe-ovhd1 { left: 50%; top: 50px; transform: translateX(-50%); width: 2px; height: 20px; } /* From col top to above col */
+        .pipe-ovhd2 { left: 50%; top: 50px; transform: translateX(-10px); width: 0px; height: 2px; } /* elbow placeholder */
+        .pipe-ovhd-to-cond { left: calc(50% - 0px); top: 50px; width: 2px; height: 0px; background: transparent;} /* Connects to condenser bottom, adjust path */
+        /* Actual connection to condenser needs more segments or SVG */
+        .pipe-cond-out-to-drum-H { top: 72px; right: 90px; width: calc(100% - 218px); height: 2px;}
+        .pipe-cond-out-to-drum-V { top: 50px; right: 90px; width: 2px; height: 22px;}
+
+        /* Reflux Pipe */
+        .pipe-reflux1 { top: 90px; right: 80px; width: 2px; height: 20px;} /* From drum bottom */
+        .pipe-reflux2 { top: 110px; right: 80px; width: 42px; height: 2px;} /* Horizontal towards column */
+        .pipe-reflux2.pipe-arrow::after { left: -5px; top: -3px; transform: rotate(180deg); }
+
+
+        /* Top Product Pipe */
+        .pipe-topprod { top: 88px; right: -5px; width: 15px; height: 2px; }
+        .pipe-topprod.pipe-arrow::after { right: -5px; top: -3px; }
+
+
+        /* Reboiler Pipes */
+        .pipe-reb-liq-out { left: calc(50% - 10px); top: 350px; width: 2px; height: 35px; } /* From col bottom */
+        .pipe-reb-liq-in-H { left: calc(50% - 10px); top: 383px; width: 80px; height: 2px; } /* Horiz to reboiler area*/
+        .pipe-reb-liq-in-V { left: calc(50% + 68px); top: 383px; width: 2px; height: 22px; } /* Down into reboiler */
+
+        .pipe-reb-vap-out-V { left: calc(50% + 30px); top: 350px; width: 2px; height: 35px; } /* From reboiler top area */
+        .pipe-reb-vap-in-H { left: calc(50% - 0px); top: 350px; width: 30px; height: 2px; } /* Horiz to column */
+        .pipe-reb-vap-in-H.pipe-arrow::after { left: -5px; top: -3px; transform: rotate(180deg); }
+
+        /* Bottom Product Pipe */
+        .pipe-botprod { bottom: 20px; right: -15px; width: 15px; height: 2px; }
+        .pipe-botprod.pipe-arrow::after { right: -5px; top: -3px; }
+
+
+        /* --- Reactor Vessel --- */
+        .reactor-vessel {
+            width: 90px; height: 130px;
+            background: var(--pfd-vessel-fill-color);
+            border: 2px solid var(--pfd-vessel-border-color);
+            border-radius: 45px / 25px; /* Elliptical */
+            position: relative;
+        }
+        .reactor-vessel .stirrer {
+            position: absolute; width: 4px; height: 80px;
+            background: var(--pfd-vessel-border-color);
+            left: 50%; top: 8px;
+            transform-origin: center 4px;
+            animation: stir 2s infinite linear;
+        }
+        @keyframes stir {
+            0%   { transform: translateX(-50%) rotate(30deg); }
+            100% { transform: translateX(-50%) rotate(390deg); }
+        }
+
+        /* --- Heat Exchanger (Generic) --- */
+        .heat-exchanger-generic {
+            width: 100px; height: 60px;
+            background: var(--pfd-vessel-fill-color);
+            border: 2px solid var(--pfd-vessel-border-color);
+            border-radius: 5px; position: relative; overflow: hidden;
+        }
+        .heat-exchanger-generic .tube {
+            position: absolute; width: calc(100% - 10px); height: 3px;
+            background: var(--primary-color); left: 5px;
+            animation: flow 2s infinite linear alternate;
+        }
+        .heat-exchanger-generic .tube:nth-child(1) { top: 35%; transform: translateY(-50%); }
+        .heat-exchanger-generic .tube:nth-child(2) { top: 65%; transform: translateY(-50%); }
+        @keyframes flow {
+            0%   { transform: scaleX(1) translateX(0); transform-origin: left; }
+            50%  { transform: scaleX(0.8) translateX(10px); transform-origin: left; }
+            100% { transform: scaleX(1) translateX(0); transform-origin: left; }
+        }
+
+
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 992px) { /* Tablets */
+            .container { flex-direction: column; }
+            .sidebar { margin-left: 0; margin-top: var(--padding-main); }
+            .distillation-assembly { width: 280px; height: 400px; transform: scale(0.9); margin-top: -20px;}
+            .pfd-label { font-size: 10px; }
+            .label-feed { top: 140px; left: -5px; }
+            .label-top-product { top: 95px; right: -50px; }
+            .label-bottom-product { bottom: 10px; right: -65px; }
+
+            .reactor-vessel { width: 80px; height: 115px; }
+            .reactor-vessel .stirrer { height: 70px; }
+        }
+
+        @media (max-width: 768px) { /* Large Mobiles / Small Tablets */
+            .profile-section { flex-direction: column; align-items: center; text-align: center; }
+            .profile-image-container { margin-right: 0; margin-bottom: var(--padding-main); }
+            .bio-text { text-align: left; }
+
+            .simulink-symbols-container { flex-wrap: wrap; justify-content: center; height: auto; gap: 20px; margin-bottom: 40px;}
+            .simulink-block { margin-bottom: 20px; }
+            .simulink-block:not(:last-child)::after { right: -20px; }
+
+            .distillation-assembly { width: 240px; height: 360px; transform: scale(0.8); margin-top: -30px; margin-bottom: -20px;}
+            .pfd-label { font-size: 9px; }
+            .label-feed { top: 145px; left: -15px; }
+            .label-top-product { top: 98px; right: -45px; }
+            .label-bottom-product { bottom: 5px; right: -60px; }
+
+            .distillation-column-main { width: 70px; height: 240px; }
+            .feed-tank { width: 60px; height: 25px; top: 145px;}
+            .overhead-condenser-symbol { width: 35px; height: 35px; top: 15px;}
+            .reflux-drum { width: 70px; height: 30px; top: 60px; right: 5px;}
+            .kettle-reboiler { width: 90px; height: 40px; bottom: 5px; right: -5px;}
+
+            .pipe-feed1 { top: 156px; width:43px; }
+            /* Adjust other pipes similarly */
+
+
+            .chemical-equipment-display { gap: 30px; }
+            .reactor-vessel { width: 70px; height: 100px; transform: scale(0.9); }
+            .reactor-vessel .stirrer { height: 60px; }
+            .heat-exchanger-generic { transform: scale(0.9); }
+        }
+
+        @media (max-width: 480px) { /* Small Mobiles */
+            .tech-branding { font-size: 1.6em; }
+            .typewriter-code { font-size: 10px; }
+            .distillation-assembly { width: 200px; height: 320px; transform: scale(0.7); margin-top: -40px; margin-bottom: -30px;}
+            .pfd-label { font-size: 8px; }
+            .label-feed { top: 150px; left: -20px; }
+            .label-top-product { top: 100px; right: -40px; }
+            .label-bottom-product { bottom: 0px; right: -55px; }
+
+            .distillation-column-main { width: 60px; height: 200px; border-radius: 20px / 15px;}
+            .column-tray-dashed { border-top-width: 1px;}
+            .feed-tank { width: 50px; height: 20px; top: 135px; left: -5px;}
+            .overhead-condenser-symbol { width: 30px; height: 30px; top: 20px;}
+            .reflux-drum { width: 60px; height: 25px; top: 65px; right: 0px;}
+            .kettle-reboiler { width: 80px; height: 35px; bottom: 10px; right: -10px;}
+             /* Further simplify/adjust pipes */
+            .pipe { height: 1px !important; } /* Make pipes thinner */
+            .pipe-arrow::after { border-width: 3px 0 3px 4px;}
+            .pipe-feed1 {top: 144px; width: 33px; left: 45px;}
+
+
+            .reactor-vessel { width: 60px; height: 90px; transform: scale(0.8); }
+            .reactor-vessel .stirrer { height: 50px; }
+            .heat-exchanger-generic { transform: scale(0.8); }
+        }
+
+    </style>
+</head>
+<body>
+    <section id="about" class="about">
+        <div class="container">
+            <div class="main-content">
+                <!-- Profile Section and Bio -->
+                <div class="profile-section">
+                    <div class="profile-image-container">
+                        <img src="Images/profile-image.jpg" alt="Amrit Khanal - Chemical Engineer" class="profile-img">
+                    </div>
+                    <div class="bio-text">
+                        <h3>Who I Am</h3>
+                        <p>I am a Chemical Engineering undergraduate with a passion for applying machine learning techniques to solve complex environmental challenges...</p>
+                        <!-- Rest of bio -->
+                    </div>
+                </div>
+
+                <!-- Simulink-Inspired Section -->
+                <div class="simulink-section">
+                    <div class="tech-branding">Amrit Khanal Technology</div>
+                    <div class="typewriter-code">
+                        <span class="keyword">import</span> tensorflow.keras <span class="keyword">as</span> keras<br>
+                        <span class="comment"># ... more code ...</span>
+                    </div>
+
+                    <div class="simulink-symbols-container">
+                        <div class="simulink-block"></div>
+                        <div class="simulink-block"></div>
+                        <div class="simulink-block"></div>
+                    </div>
+
+                    <!-- Chemical Engineering Diagrams Area -->
+                    <div class="chemical-equipment-display">
+                        <!-- New Distillation Column Assembly -->
+                        <div class="equipment-item">
+                            <div class="distillation-assembly">
+                                <div class="distillation-column-main">
+                                    <div class="column-liquid"></div>
+                                    <div class="column-tray-dashed"></div>
+                                    <div class="column-tray-dashed"></div>
+                                    <div class="column-tray-dashed"></div>
+                                    <div class="column-tray-dashed"></div>
+                                    <div class="column-tray-dashed"></div>
+                                </div>
+                                <div class="feed-tank">
+                                    <div class="feed-tank-liquid"></div>
+                                </div>
+                                <div class="overhead-condenser-symbol">
+                                    <div class="condenser-squiggle"></div>
+                                </div>
+                                <div class="reflux-drum">
+                                    <div class="reflux-drum-liquid"></div>
+                                </div>
+                                <div class="kettle-reboiler">
+                                    <div class="reboiler-heater"></div>
+                                    <div class="reboiler-liquid"></div>
+                                </div>
+
+                                <!-- Pipes -->
+                                <div class="pipe pipe-feed1 pipe-arrow"></div>
+
+                                <div class="pipe pipe-ovhd1"></div>
+                                <!-- <div class="pipe pipe-ovhd2"></div> needed for complex path -->
+                                <div class="pipe pipe-cond-out-to-drum-V"></div>
+                                <div class="pipe pipe-cond-out-to-drum-H"></div>
+
+
+                                <div class="pipe pipe-reflux1"></div>
+                                <div class="pipe pipe-reflux2 pipe-arrow"></div>
+
+                                <div class="pipe pipe-topprod pipe-arrow"></div>
+
+                                <div class="pipe pipe-reb-liq-out"></div>
+                                <div class="pipe pipe-reb-liq-in-H"></div>
+                                <div class="pipe pipe-reb-liq-in-V"></div>
+
+                                <div class="pipe pipe-reb-vap-out-V"></div>
+                                <div class="pipe pipe-reb-vap-in-H pipe-arrow"></div>
+
+                                <div class="pipe pipe-botprod pipe-arrow"></div>
+
+
+                                <!-- PFD Labels -->
+                                <div class="pfd-label label-feed">Feed</div>
+                                <div class="pfd-label label-top-product">Top Product</div>
+                                <div class="pfd-label label-bottom-product">Bottom Product</div>
+                            </div>
+                            <div class="equipment-label-main">Distillation Process</div>
+                        </div>
+
+                        <!-- Reactor Vessel -->
+                        <div class="equipment-item">
+                            <div class="reactor-vessel">
+                                <div class="stirrer"></div>
+                            </div>
+                            <div class="equipment-label-main">Reactor</div>
+                        </div>
+
+                        <!-- Heat Exchanger (Generic one) -->
+                        <div class="equipment-item">
+                            <div class="heat-exchanger-generic">
+                                <div class="tube"></div>
+                                <div class="tube"></div>
+                            </div>
+                             <div class="equipment-label-main">Heat Exchanger</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <!-- Education & Experience and Skills -->
+                <div class="education">
+                    <h3>Education & Experience</h3>
+                    <!-- edu items -->
+                     <div class="edu-item">
+                        <span class="edu-icon">🎓</span>
+                        <div>
+                            <strong>2021 - 2025</strong>
+                            <p>B.E. Chemical Engineering. <br>Pulchowk Campus, Institute of Engineering, Tribhuvan University</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="skills-overview">
+                    <h3>Technical Skills</h3>
+                    <ul class="skills-logo-list">
+                        <li><img src="Images/python logo.png" alt="Python" title="Python"></li>
+                        <!-- more skills -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
